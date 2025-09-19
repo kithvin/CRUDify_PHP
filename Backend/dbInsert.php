@@ -1,6 +1,6 @@
 <?php
 
-require_once 'dbConnection.php';
+require_once __DIR__ . '/dbConnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get and validate form input
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $userName, $userGmail, $hashedPassword);
     
     if ($stmt->execute()) {
-        header("Location: success.php");
+        header("Location: ../frontend/success.php");
         exit();
     } else {
         die("Execute failed: (" . $stmt->errno . ") " . $stmt->error);

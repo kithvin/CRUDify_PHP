@@ -18,7 +18,7 @@ if ($conn->connect_errno) {
     // Show detailed error only in development
     die("Database connection failed: (" . $conn->connect_errno . ") " . $conn->connect_error);
 } else {
-    echo "Connected successfully";
+    echo "";
 }
 
 

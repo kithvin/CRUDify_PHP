@@ -8,7 +8,7 @@
     /* --------- General Body Styling --------- */
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #74ebd5, #9face6); /* Gradient background */
+      background: linear-gradient(135deg, #74ebd5, #9face6);
       margin: 0;
       padding: 0;
       display: flex;
@@ -24,17 +24,17 @@
       margin: 30px 0 20px;
       font-size: 2.5rem;
       color: #222;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Light shadow effect */
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     }
 
     /* --------- Table Styling --------- */
     table {
       width: 80%;
-      border-collapse: collapse; /* Removes double borders */
+      border-collapse: collapse;
       background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
 
     /* --------- Table Head & Data Cells --------- */
@@ -45,7 +45,7 @@
 
     /* Table header row */
     th {
-      background: #4a90e2; /* Blue header */
+      background: #4a90e2;
       color: #fff;
       font-size: 1.1rem;
       text-transform: uppercase;
@@ -68,15 +68,69 @@
       color: #555;
     }
 
+    /* --------- Button Styling --------- */
+    /* Update Button */
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 0 5px;
+    }
+
+    /* Update Button */
+    button:first-child {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    button:first-child:hover {
+      background-color: #3e8e41;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    button:first-child:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* Delete Button */
+    button:last-child {
+      background-color: #f44336;
+      color: white;
+    }
+
+    button:last-child:hover {
+      background-color: #d32f2f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    button:last-child:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
     /* --------- Responsive Design --------- */
     @media (max-width: 768px) {
       table {
-        width: 95%; /* Make table wider on small screens */
+        width: 95%;
       }
 
       th, td {
         padding: 10px;
         font-size: 0.9rem;
+      }
+      
+      button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        margin: 0 3px;
       }
     }
   </style>
@@ -84,7 +138,7 @@
 <body>
   <!-- Page Title -->
   <h1>User Display Page</h1>
-
+ 
   <!-- User Data Table -->
   <table>
     <thead>
@@ -93,23 +147,11 @@
         <th>User Name</th>
         <th>User Gmail</th>
         <th>User Password</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <!-- Example row 1 -->
-      <tr>
-        <td>1</td>
-        <td>Alice</td>
-        <td>alice@example.com</td>
-        <td>••••••</td> <!-- Hidden password -->
-      </tr>
-      <!-- Example row 2 -->
-      <tr>
-        <td>2</td>
-        <td>Bob</td>
-        <td>bob@example.com</td>
-        <td>••••••</td>
-      </tr>
+      <?php include '../backend/success.inc.php'; ?>
     </tbody>
   </table>
 </body>

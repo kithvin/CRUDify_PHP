@@ -17,8 +17,8 @@
   <div class="container">
     <h1>Login</h1>
 
-    <!-- Login form (submits data to dbInsert.php) -->
-    <form action="../backend/dbInsert.php" method="POST">
+    <!-- Login form (submits data to Insert.inc.php) -->
+    <form action="../backend/insert.inc.php" method="POST">
       
       <!-- Username field -->
       <div class="form-group">

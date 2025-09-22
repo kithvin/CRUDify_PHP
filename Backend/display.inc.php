@@ -14,10 +14,10 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["id"] . "</td>";
         echo "<td>" . $row["name"] . "</td>";
         echo "<td>" . $row["email"] . "</td>";
-        // echo "<td>" . $row["password"] . "</td>";
+        echo "<td>***********************************************************</td>";
         echo "<td>";
         echo "<button onclick=\"window.location.href='../frontend/update.php?id=" . $row['id'] . "'\">Update</button>";
-        echo "<button>Delete</button>";
+        echo "<button type=\"button\" class=\"btn btn-cancel\" onclick=\"window.location.href='../backend/delete.inc.php?delete_id=" . $row["id"] . "'\">Delete</button>";
         echo "</td>";
         echo "</tr>";
     }

@@ -37,7 +37,7 @@
     /* form box */
     form {
       background: white;
-      padding: 30px;
+      padding: 40px;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       width: 100%;

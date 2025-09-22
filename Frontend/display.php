@@ -6,11 +6,13 @@
   <title>Display Page</title>
 
   <style>
+    /* ---------- Theme Variables ---------- */
     :root{
       --text:#0f172a; --card:#ffffff;
       --border:#e5e7eb; --row:#f9fafb;
       --head1:#eef2ff; --head2:#f5f3ff;
     }
+     /* ---------- Global Styles ---------- */
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -26,6 +28,7 @@
       letter-spacing:.2px;
     }
 
+  /* ---------- Table Wrapper ---------- */
     .table-wrap{
       width:min(100%,1000px);
       margin:0 auto;
@@ -35,12 +38,14 @@
       overflow:hidden;
       box-shadow:0 10px 24px rgba(2,6,23,.06);
     }
+    /* ---------- Table Styles ---------- */
     table{
       width:100%;
       border-collapse:separate;
       border-spacing:0;
     }
-   
+  
+  /* Table Header */
     thead th{
       text-align:center;
       padding:14px 16px;
@@ -49,15 +54,19 @@
       border-bottom:1px solid var(--border);
       font-size:0.95rem;
     }
+  /* Table Body */
     tbody td{
       padding:14px 16px;
       border-bottom:1px solid var(--border);
       font-size:0.95rem;
       background:#fff;
+      text-align:center;
     }
+  /* Alternate row colors */
     tbody tr:nth-child(even) td{ background:var(--row); }
     tbody tr:hover td{ background:#f1f5f9; }
-
+  
+  /* ---------- Button Styles ---------- */
     td button{
       appearance:none; border:0;
       padding:8px 12px;
@@ -67,6 +76,7 @@
       background:#eef2ff;
       transition:transform .06s ease, box-shadow .2s ease, background .2s ease;
     }
+    /* Second button (Delete) in Action column */
     td button + button{ margin-left:8px; background:#fee2e2; }
     td button:hover{ transform:translateY(-1px); box-shadow:0 6px 16px rgba(2,6,23,.12); }
   </style>
@@ -81,14 +91,16 @@
           <th>User ID</th>
           <th>User Name</th>
           <th>User Gmail</th>
-          <!-- <th>User Password</th> -->
+          <th>User Password</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
+        <!-- PHP will generate rows dynamically -->
         <?php include '../backend/display.inc.php'; ?>
       </tbody>
     </table>
+    <!-- JavaScript for handling button redirects -->
     <script src="../backend/script.js"
   </div>
 </body>

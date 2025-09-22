@@ -1,52 +1,50 @@
 <?php
 
-require_once __DIR__ . '/dbConnection.php';
+require_once __DIR__ . '/../backend/dbConnection.php'; // DB connection
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get and validate form input
-    $userName     = filter_input(INPUT_POST, 'userName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $userGmail    = filter_input(INPUT_POST, 'userGmail', FILTER_VALIDATE_EMAIL);
-    $userPassword = $_POST['userPassword'] ?? ''; 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name     = $_POST['name'];
+    $email    = $_POST['email'];
+    $password = $_POST['password'];
 
-    if (!$userName || !$userGmail || !$userPassword) {
-        die("Error: Invalid input data.");
+    // --- validation ---
+    if (empty($name) || empty($email) || empty($password)) {
+        echo "<script>alert('All fields are required'); window.history.back();</script>";
+        exit;
     }
 
-    // Check if email already exists
-    $check = $conn->prepare("SELECT COUNT(*) FROM table_details WHERE userGmail = ?");
-    if ($check === false) {
-        die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
-    }
-    $check->bind_param("s", $userGmail);
-    $check->execute();
-    $check->bind_result($exists);
-    $check->fetch();
-    $check->close();
-
-    if ($exists > 0) {
-        die("Error: This email is already registered.");
+    // Email format check
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Invalid email'); window.history.back();</script>";
+        exit;
     }
 
-    // Encrypt password
-    $hashedPassword = password_hash($userPassword, PASSWORD_BCRYPT);
+    // Check if email already exists 
+    $checkQuery = "SELECT * FROM user_details WHERE email = '$email'";
+    $result = $conn->query($checkQuery);
 
-    // Insert new record
-    $stmt = $conn->prepare("INSERT INTO table_details (userName, userGmail, userPassword) VALUES (?, ?, ?)");
-    if ($stmt === false) {
-        die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
+    if ($result->num_rows > 0) {
+        // Email already exists
+        echo "<script>alert('This email address is already registered');</script>";
+        echo "<script>window.location.href='../frontend/insert.php';</script>";
+        exit;
     }
 
-    $stmt->bind_param("sss", $userName, $userGmail, $hashedPassword);
-    
+    // Hash password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert user 
+    $stmt = $conn->prepare("INSERT INTO user_details (name, email, password) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $name, $email, $hashedPassword);
+
     if ($stmt->execute()) {
-        header("Location: ../frontend/success.php");
-        exit();
+        echo "<script>alert('Data Added Successfully'); window.location.href='../frontend/display.php';</script>";
     } else {
-        die("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
+        echo "<script>alert('Database error: " . $conn->error . "'); window.history.back();</script>";
     }
 
-    // Close statement
+    // Cleanup
     $stmt->close();
+    $conn->close(); 
 }
-
 ?>

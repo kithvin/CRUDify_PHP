@@ -108,6 +108,28 @@
       border-radius: 12px 12px 0 0;
     }
     
+    /* Create Account button styling */
+    .btn-cancel {
+      display: block;
+      text-align: center;
+      background: #f1f3f9;
+      color: #6e8efb;
+      border: 2px solid #ddd;
+      padding: 13px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-cancel:hover {
+      background: #e4e8f7;
+      border-color: #6e8efb;
+    }
+    
     /* responsive */
     @media (max-width: 500px) {
       form { padding: 20px; }
@@ -130,6 +152,7 @@
     <input type="password" name="password" id="password" required>
 
     <input type="submit" value="Submit">
+    <a href="login.php" class="btn btn-cancel">Login</a>
   </form>
 </body>
 </html>
